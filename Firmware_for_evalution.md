@@ -2,8 +2,8 @@
 
 + **DIR-629-B1:**
 
-CVE-2018-10996 session.cgi?ACTION=logout request（command）
-CVE-2018-5318 soap.cgi中使用sprintf()函数拼接了http请求的HTTP_SOAPACTION字段，并将之存储到栈上，导致缓冲区溢出。(BOF)
+CVE-2018-10996 :session.cgi?ACTION=logout request（command）
+CVE-2018-5318 :The sprintf() function in soap.cgi spliced the HTTP_SOAPACTION field of an http request and stored it on the stack, causing a buffer overflow. (BOF)
 
 + **DIR-859 A3-1.06**: 
 
@@ -12,7 +12,7 @@ CVE-2019-17508(command injection)
 + **DIR-859 (A1) 1.05**:
 
 CVE-2022-46476(command) CVE-2022-25106(BOF)
-通过环境变量传递Command：
+Passing through environment variables (ommand inject)：
 CVE-2019-20217 CVE-2019-20216 CVE-2019-20215 CVE-2019-17621
 
 + **DIR-816 A2 1.10 B04**:
@@ -105,7 +105,7 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
 
 + Belkin（open-source）
 
-+ Linksys（领势） WRT54GL 4.30.18.006 (open-source)
++ Linksys WRT54GL 4.30.18.006 (open-source)
 
   **httpd**
 
@@ -136,7 +136,7 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
 
 + Zyxel (open-source)
 
-+ Phicomm (RCE漏洞居多，已经停产了)
++ Phicomm (RCE)
 
 + Mikrotik  Router OS 
 
@@ -176,7 +176,7 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
 
 + **AC23 16.03.07.45** 
 
-​	**[CVE-2023-0782](https://nvd.nist.gov/vuln/detail/CVE-2023-0782)** :该函数`formSetSysToolDDNS`可以设置nvram的参数`adv.ddns1.en`为` v22`，而`v22`**可以通过POST参数设置`ddnsEn`**；在 `formGetSysToolDDNS`函数中，调用`GetValue(“adv.ddns1.en”, v11)`来设置堆栈上的` v11`字符串，所以存在堆栈溢出漏洞。
+​	**[CVE-2023-0782](https://nvd.nist.gov/vuln/detail/CVE-2023-0782)** : The function `formSetSysToolDDNS` can set nvram's parameter `adv.ddns1.en` to ` v22`, and ` v22` ** can be set to `ddnsEn` ** via the POST parameter; in the `formGetSysToolDDNS` function, the call to `GetValue( “adv.ddns1.en”, v11)` to set the ` v11` string on the stack, so a stack overflow vulnerability exists.
 
 + **AC18 v15.03.05.19**  ***Test2**
 
@@ -202,7 +202,7 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
   
   int __fastcall fromSetRouteStatic(int a1){
       //...
-  	list = websgetvar(a1, "list", &unk_E8A34);    // 读取list参数数据并传入sub_79180函数
+  	list = websgetvar(a1, "list", &unk_E8A34);    // Read list parameter data and pass into sub_79180 function
     	v1 = sub_79180("adv.staticroute", list, 126);
       //...
   }
@@ -216,10 +216,10 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
     //...
     if ( strlen(list) > 4 ){
       //...
-      src = list;                                 // src来自外部输入的list
+      src = list;                     // 'src' come from external input 'list'
       while ( 1 ){
         //...
-        if ( sscanf(src, "%[^,],%[^,],%[^,],%s", v11, v10, v9, s1) == 4 )// 没有限定长度，容易导致v11、v10、v9、s1溢出
+        if ( sscanf(src, "%[^,],%[^,],%[^,],%s", v11, v10, v9, s1) == 4 )// No limit on length, easy to cause v11, v10, v9, s1 to overflow
         //...
       }
       //...
@@ -239,27 +239,27 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
       char *v18; // [sp+3ACh] [bp-50h]
       char *urls; // [sp+3C8h] [bp-34h]
       //...
-      urls = (char *)websgetvar(a1, "urls", &unk_F0A08);// 读取urls参数数据
+      urls = (char *)websgetvar(a1, "urls", &unk_F0A08);// Read data from urls parameter
       //...
       v18 = malloc(596u);
     	memset(v18, 0, 596u);
       //..
-      strcpy((char *)v18 + 80, urls);// 缺少边界检查，容易造成v18溢出
+      strcpy((char *)v18 + 80, urls);// Lack of boundary checking can easily cause v18 overflow
       //...
   }
   ```
 
 ​		**[CVE-2022-30472](https://nvd.nist.gov/vuln/detail/CVE-2022-30472)**、**[CVE-2022-30473](https://nvd.nist.gov/vuln/detail/CVE-2022-30473)**、**[CVE-2022-30474](https://nvd.nist.gov/vuln/detail/CVE-2022-30474)**、**[CVE-2022-30475](https://nvd.nist.gov/vuln/detail/CVE-2022-30475)**、**[CVE-2022-30476](https://nvd.nist.gov/vuln/detail/CVE-2022-30476)**、**[CVE-2022-30477](https://nvd.nist.gov/vuln/detail/CVE-2022-30477)**
 
-​		可能已修复：【**[CVE-2018-18706](https://nvd.nist.gov/vuln/detail/CVE-2018-18706)**、**[CVE-2018-18707](https://nvd.nist.gov/vuln/detail/CVE-2018-18707)**、**[CVE-2018-18708](https://nvd.nist.gov/vuln/detail/CVE-2018-18708)**、**[CVE-2018-18709](https://nvd.nist.gov/vuln/detail/CVE-2018-18709)**、**[CVE-2018-18727](https://nvd.nist.gov/vuln/detail/CVE-2018-18727)**、**[CVE-2018-18728](https://nvd.nist.gov/vuln/detail/CVE-2018-18728)**、**[CVE-2018-18729](https://nvd.nist.gov/vuln/detail/CVE-2018-18729)**、**[CVE-2018-18730](https://nvd.nist.gov/vuln/detail/CVE-2018-18730)**、**[CVE-2018-18731](https://nvd.nist.gov/vuln/detail/CVE-2018-18731)**、**[CVE-2018-18732](https://nvd.nist.gov/vuln/detail/CVE-2018-18732)**】
+​		【**[CVE-2018-18706](https://nvd.nist.gov/vuln/detail/CVE-2018-18706)**、**[CVE-2018-18707](https://nvd.nist.gov/vuln/detail/CVE-2018-18707)**、**[CVE-2018-18708](https://nvd.nist.gov/vuln/detail/CVE-2018-18708)**、**[CVE-2018-18709](https://nvd.nist.gov/vuln/detail/CVE-2018-18709)**、**[CVE-2018-18727](https://nvd.nist.gov/vuln/detail/CVE-2018-18727)**、**[CVE-2018-18728](https://nvd.nist.gov/vuln/detail/CVE-2018-18728)**、**[CVE-2018-18729](https://nvd.nist.gov/vuln/detail/CVE-2018-18729)**、**[CVE-2018-18730](https://nvd.nist.gov/vuln/detail/CVE-2018-18730)**、**[CVE-2018-18731](https://nvd.nist.gov/vuln/detail/CVE-2018-18731)**、**[CVE-2018-18732](https://nvd.nist.gov/vuln/detail/CVE-2018-18732)**】
 
 ## ASUS 
 
-+ **RT-N53（版本3.0.0.4.376.3754）** ***Test3**
++ **RT-N53（version 3.0.0.4.376.3754）** ***Test3**
 
 ​		**httpd、rc**
 
-​		[**CVE-2019-20082**](https://github.com/pr0v3rbs/CVE/tree/master/CVE-2019-20082) （数据保存到NVRAM，在rc中读取并造成溢出）
+​		[**CVE-2019-20082**](https://github.com/pr0v3rbs/CVE/tree/master/CVE-2019-20082) （Data saved to NVRAM, read in rc and cause overflow）
 
 + **RT-AX56U 3.0.0.4.386.44266** 
 
@@ -273,9 +273,9 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
 
 ## H3C 
 
-+ ~~**Magic B1STV100R012**~~ 
++ **Magic B1STV100R012** 
 
-​		在/bin/**webs** 的sub_433A70
+​		in sub_433A70() of /bin/**webs** 
 
 ​		**stack over flow**
 
@@ -285,7 +285,7 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
 
 ​		**[CVE-2023-34929](https://nvd.nist.gov/vuln/detail/CVE-2023-34929)**、**[CVE-2023-34928](https://nvd.nist.gov/vuln/detail/CVE-2023-34928)**、**[CVE-2023-34924](https://nvd.nist.gov/vuln/detail/CVE-2023-34924)**
 
-<img src="./%E5%AF%B9%E6%AF%94%E5%AE%9E%E9%AA%8C-%E5%9B%BA%E4%BB%B6.assets/%E6%88%AA%E5%9B%BE_20230817164450.png" alt="截图_20230817164450" style="zoom: 67%;" />
+
 
 + **GR-1200W MiniGRW1A0V100R006** 
 
@@ -315,9 +315,9 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
 
 ## Siretta 
 
-+ **QUARTZ-GOLD** (工业路由器) 
++ **QUARTZ-GOLD** (industrial router) 
 
-​		**DetranCLI** 的多个漏洞
+​		multiple CVEs in **DetranCLI** 
 
 ​		[**CVE-2022-40995**](https://talosintelligence.com/vulnerability_reports/TALOS-2022-1613)
 
@@ -331,9 +331,9 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
 
 ​		[参考：CVE-2021-33044](https://re1own.github.io/2021/10/21/%E5%A4%A7%E5%8D%8E%E6%91%84%E5%83%8F%E5%A4%B4-CVE-2021-33044%E6%BC%8F%E6%B4%9E%E7%A0%94%E7%A9%B6/) 
 
-+ **REOLINK RLC-410W 3.0.0.136_20121102**   (找不到漏洞点) 
++ **REOLINK RLC-410W 3.0.0.136_20121102**   
 
-​		可能是cgiserver.cgi的TestEmail
+​       TestEmail() in cgiserver.cgi
 
 ​		Out-of-bounds Write
 
@@ -343,15 +343,15 @@ CVE-2023-36354 CVE-2023-36358 CVE-2023-36359
 
 ​		[firmware_RLC_410W_5MP_v300136](https://home-cdn.reolink.us/wp-content/uploads/2020/12/181032201608287540.9848.zip?download_name=firmware_RLC_410W_5MP_v300136.zip)
 
-+ **Wyze Cam **  （固件加密）
++ **Wyze Cam **  （Firmware encryption）
 
 ​		Wyze Cam Pan v2 versions prior to 4.49.1.47. Wyze Cam v2 versions prior to 4.9.8.1002. Wyze Cam v3 versions prior to 4.36.8.32.
 
 ​		[CVE-2019-12266](https://nvd.nist.gov/vuln/detail/CVE-2019-12266)(SOF)
 
-​		[分析](https://www.bitdefender.com/blog/labs/vulnerabilities-identified-in-wyze-cam-iot-device/)
+​		[analysis](https://www.bitdefender.com/blog/labs/vulnerabilities-identified-in-wyze-cam-iot-device/)
 
-​		[下载](https://github.com/kohrar/Wyze-Firmwares/tree/master)
+​		[download](https://github.com/kohrar/Wyze-Firmwares/tree/master)
 
 + IPTIME 
 

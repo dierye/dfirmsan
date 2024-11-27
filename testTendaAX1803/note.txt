@@ -1,0 +1,6 @@
+tenda AX1803 CVE-2022-40875、CVE-2022-40876
+
+export PYTHONPATH=/work/testTendaAX1803/
+export AFL_PYTHON_MODULE=mutation
+
+

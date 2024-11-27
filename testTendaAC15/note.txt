@@ -1,0 +1,4 @@
+tenda AC15 CVE-2018-5767
+
+export PYTHONPATH=/work/testTendaAC15/
+export AFL_PYTHON_MODULE=mutation

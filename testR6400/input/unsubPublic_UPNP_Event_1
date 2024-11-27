@@ -1,0 +1,6 @@
+UNSUBSCRIBE /Public_UPNP_Event_1 HTTP/1.1
+host: http://172.17.0.2:5000
+callback: http://172.17.0.22:9999
+nt: upnp:event
+sid: uuid:1ccee668-0f15-8d2c-38d8-044dd194e7af
+
